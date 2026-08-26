@@ -7,7 +7,7 @@ class RequestState(BaseModel):
     model_name: str
     model_provider: str
     system_prompt: str
-    messages: List[str]
+    messages: str
     allow_search: bool
 
 ALLOWED_MODEL_NAMES = ["qwen/qwen3.6-27b", "meta-llama/llama-prompt-guard-2-86m"]

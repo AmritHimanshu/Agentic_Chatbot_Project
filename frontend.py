@@ -1,4 +1,5 @@
 import streamlit as st
+import requests
 
 st.set_page_config(page_title="Agentic Chatbot", page_icon="🤖", layout="centered")
 st.title("AI Agent Chatbot")
@@ -17,10 +18,28 @@ allow_web_search = st.checkbox("Allow Web Search", value=False)
 
 user_query = st.text_area("Enter your query: ", height=100, placeholder="Ask me anything!")
 
+API_URL = "http://127.0.0.1:5000/chat"
+
 if st.button("Ask Agent!"):
     if not user_query.strip():
         st.warning("Please enter a query before asking the agent.")
     else:
-        response = "Hi! This is dummy response."
-        st.subheader("Agent's Response:")
-        st.markdown(f"**Final Response: **{response}")
+        payload = {
+            "model_name": model_name,
+            "model_provider": provider,
+            "system_prompt": system_prompt,
+            "messages": user_query,
+            "allow_search": allow_web_search
+        }
+
+        response = requests.post(API_URL, json=payload)
+
+        if response.status_code == 200:
+            response_data = response.json()
+            if "error" in response_data:
+                st.error(f"Error: {response_data['error']}")
+            else:
+                st.subheader("Agent's Response:")
+                st.markdown(f"**Final Response: **{response_data}")
+        else:
+            st.error(f"Failed to get response from the agent. Status code: {response.status_code}")
