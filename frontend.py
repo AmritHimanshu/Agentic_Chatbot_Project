@@ -10,7 +10,7 @@ st.write("Create and Interact with the AI Agents!")
 
 system_prompt = st.text_area("Define your AI Agent: ", height=70, placeholder="You are an AI chatbot who is very smart and friendly.")
 
-MODEL_NAMES_GROQ = ["qwen/qwen3.6-27b", "meta-llama/llama-prompt-guard-2-86m"]
+MODEL_NAMES_GROQ = ["qwen/qwen3.6-27b"]
 
 provider = st.radio("Select Model Provider", options=["Groq"], index=0)
 

@@ -1,7 +1,11 @@
 from pydantic import BaseModel
 from typing import List
 from fastapi import FastAPI
-from Backend.ai_agent import get_response_from_ai_agent
+from ai_agent import get_response_from_ai_agent
+import uvicorn
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 class RequestState(BaseModel):
     model_name: str
@@ -10,7 +14,7 @@ class RequestState(BaseModel):
     messages: str
     allow_search: bool
 
-ALLOWED_MODEL_NAMES = ["qwen/qwen3.6-27b", "meta-llama/llama-prompt-guard-2-86m"]
+ALLOWED_MODEL_NAMES = ["qwen/qwen3.6-27b"]
 
 app = FastAPI(title= "LangGraph AI Agent")
 
@@ -22,7 +26,7 @@ def chat_endpoint(request: RequestState):
     """
     if request.model_name not in ALLOWED_MODEL_NAMES:
         return {"error": "Invalid model name. Please select a valid AI model"}
-
+    
     llm_id = request.model_name
     query = request.messages
     allow_search = request.allow_search
@@ -38,5 +42,5 @@ def root():
     return {"message": "Welcome to the LangGraph AI Agent API."}
 
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
