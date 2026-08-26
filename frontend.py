@@ -1,5 +1,8 @@
 import streamlit as st
 import requests
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 st.set_page_config(page_title="Agentic Chatbot", page_icon="🤖", layout="centered")
 st.title("AI Agent Chatbot")
@@ -18,7 +21,7 @@ allow_web_search = st.checkbox("Allow Web Search", value=False)
 
 user_query = st.text_area("Enter your query: ", height=100, placeholder="Ask me anything!")
 
-API_URL = "http://127.0.0.1:5000/chat"
+API_URL = os.getenv("API_URL")
 
 if st.button("Ask Agent!"):
     if not user_query.strip():
