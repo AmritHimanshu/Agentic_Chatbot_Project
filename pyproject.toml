@@ -11,5 +11,6 @@ dependencies = [
     "langchain-tavily>=0.2.18",
     "langgraph>=1.2.11",
     "python-dotenv>=1.2.3",
+    "streamlit>=1.62.0",
     "uvicorn>=0.52.4",
 ]

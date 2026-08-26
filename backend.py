@@ -10,7 +10,7 @@ class RequestState(BaseModel):
     messages: List[str]
     allow_search: bool
 
-ALLOWED_MODEL_NAMES = ["qwen/qwen3.6-27b"]
+ALLOWED_MODEL_NAMES = ["qwen/qwen3.6-27b", "meta-llama/llama-prompt-guard-2-86m"]
 
 app = FastAPI(title= "LangGraph AI Agent")
 
