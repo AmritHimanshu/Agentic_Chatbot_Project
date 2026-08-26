@@ -21,7 +21,8 @@ allow_web_search = st.checkbox("Allow Web Search", value=False)
 
 user_query = st.text_area("Enter your query: ", height=100, placeholder="Ask me anything!")
 
-API_URL = os.getenv("API_URL")
+# BACKEND_API_URL = os.getenv("BACKEND_API_URL")
+BACKEND_API_URL = st.secrets["BACKEND_API_URL"]
 
 if st.button("Ask Agent!"):
     if not user_query.strip():
@@ -35,7 +36,7 @@ if st.button("Ask Agent!"):
             "allow_search": allow_web_search
         }
 
-        response = requests.post(f"{API_URL}/chat", json=payload)
+        response = requests.post(f"{BACKEND_API_URL}/chat", json=payload)
 
         if response.status_code == 200:
             response_data = response.json()
