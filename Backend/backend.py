@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import List
 from fastapi import FastAPI
-from ai_agent import get_response_from_ai_agent
+from Backend.ai_agent import get_response_from_ai_agent
 
 class RequestState(BaseModel):
     model_name: str
