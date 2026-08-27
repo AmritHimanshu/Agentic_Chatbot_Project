@@ -122,14 +122,14 @@ This means the agent can operate as a normal LLM-powered chatbot or as a **tool-
 
 | Technology | Purpose |
 |---|---|
-| 🐍 Python | Core programming language |
-| 🦜 LangChain | AI agent framework |
-| ⚡ FastAPI | Backend API |
-| 🎨 Streamlit | Frontend/UI |
-| 🧠 Groq | LLM provider |
-| 🔎 Tavily | Web-search tool |
-| 🔐 python-dotenv | Environment variable management |
-| 🚀 Uvicorn | ASGI server |
+| Python | Core programming language |
+| LangChain | AI agent framework |
+| FastAPI | Backend API |
+| Streamlit | Frontend/UI |
+| Groq | LLM provider |
+| Tavily | Web-search tool |
+| python-dotenv | Environment variable management |
+| Uvicorn | ASGI server |
 
 ---
 
