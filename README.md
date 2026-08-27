@@ -1,4 +1,4 @@
-# 🤖 Agentic AI Chatbot
+# Agentic AI Chatbot
 
 An **Agentic AI Chatbot** built while learning and exploring **AI Agents, LangChain, FastAPI, Streamlit, and tool-augmented LLM applications**.
 
