@@ -138,8 +138,9 @@ This means the agent can operate as a normal LLM-powered chatbot or as a **tool-
 ```text
 agentic-chatbot-project/
 │
-├── ai_agent.py
-├── backend.py
+├── Backend
+├      ├── ai_agent.py
+├      ├── backend.py
 ├── frontend.py
 │
 ├── requirements.txt
@@ -293,80 +294,107 @@ BACKEND_API_URL = "https://your-backend-url.com"
 
 ## 🚀 Run Locally
 
+This project uses **uv** for Python environment and dependency management.
+
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/<your-repository>.git
+git clone https://github.com/AmritHimanshu/Agentic_Chatbot_Project.git
 
 cd <your-repository>
 ```
 
-### 2. Create a virtual environment
+### 2. Install uv
+
+If you don't already have `uv` installed, follow the official installation instructions.
+
+### 3. Create the virtual environment
 
 ```bash
-python -m venv venv
+uv venv
 ```
 
-Activate it on Linux/macOS:
+Activate the environment on Linux/macOS:
 
 ```bash
-source venv/bin/activate
+source .venv/bin/activate
 ```
 
 Windows:
 
 ```bash
-venv\Scripts\activate
+.venv\Scripts\activate
 ```
 
-### 3. Install dependencies
+### 4. Install dependencies
+
+If the repository contains a `pyproject.toml`:
 
 ```bash
-pip install -r requirements.txt
+uv sync
 ```
 
-### 4. Configure environment variables
+This will create/synchronize the project's virtual environment and install the required dependencies.
 
-Create a `.env` file:
+Alternatively, if you are using a `requirements.txt` file:
+
+```bash
+uv pip install -r requirements.txt
+```
+
+### 5. Configure environment variables
+
+Create a `.env` file in the project root:
 
 ```env
 GROQ_API_KEY=your_groq_api_key
 TAVILY_API_KEY=your_tavily_api_key
 ```
 
-### 5. Start the FastAPI backend
+> ⚠️ Never commit your `.env` file or API keys to GitHub.
+
+### 6. Start the FastAPI backend
 
 ```bash
-uvicorn backend:app --reload --port 5000
+uv run uvicorn backend:app --reload --port 5000
 ```
 
-The API will be available at:
+The backend will be available at:
 
 ```text
 http://127.0.0.1:5000
 ```
 
-You can also open the FastAPI documentation at:
+FastAPI's interactive API documentation is available at:
 
 ```text
 http://127.0.0.1:5000/docs
 ```
 
-### 6. Configure the frontend
+### 7. Configure the Streamlit frontend
 
-For local development, configure:
+For local development, configure the backend URL used by the Streamlit frontend.
 
-```env
-BACKEND_API_URL=http://127.0.0.1:5000
+If your application uses Streamlit secrets, create:
+
+```text
+.streamlit/
+└── secrets.toml
 ```
 
-Then start Streamlit:
+with:
+
+```toml
+BACKEND_API_URL = "http://127.0.0.1:5000"
+```
+
+### 8. Start the Streamlit frontend
 
 ```bash
-streamlit run frontend.py
+uv run streamlit run frontend.py
 ```
 
-The Streamlit application will open in your browser.
+The application will then open in your browser.
 
 ---
 
@@ -517,7 +545,7 @@ This project was an important step in my journey from traditional full-stack dev
 
 ## 👨‍💻 Author
 
-**Himanshu Singh**
+**Himanshu Kumar Amrit**
 
 Full Stack Developer → Generative AI / AI Engineer
 
